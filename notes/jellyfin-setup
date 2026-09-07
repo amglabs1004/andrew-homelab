@@ -1,0 +1,31 @@
+Jellyfin Setup
+
+I deployed Jellyfin as an LXC container on Proxmox to stream movies, TV shows, and music to devices on my home network and remotely using Tailscale.
+
+I installed using the offical install script inside the LXC:
+curl -fsSL https://repo.jellyfin.org/install-debuntu.sh | bash
+
+At first curl was not present on the base Debian LXC template and it had to be installed first using 'apt install -y curl'
+
+
+## Lesson Learned: Home Directory Sandboxing
+Initially pointed the Movies library at a user's home directory (`/home/aglab1004`) for convenience while transferring files via FileZilla. Files uploaded successfully and had correct permissions 755 all the way down the path. 
+but Jellyfin's library scan repeatedly logged: Library folder "/home/aglab1004" is inaccessible or empty, skipping
+Root cause: Jellyfin's systemd service is commonly hardened against accessing user home directories regardless of file permissions (e.g. `ProtectHome`), so permission fixes at the filesystem level don't resolve it.
+
+**Fix:** Moved media out of any user's home directory entirely into a dedicated `/mnt/media` path not associated with a login user, then repointed the library there.
+
+**Takeaway:** Don't store service data in a personal home directory — use a dedicated data path from the start.
+
+## Lesson Learned: TV Show Folder Structure
+Uploaded TV episodes directly into the shows library folder with no show subfolder : /mnt/media/shows/Lanterns - S01E01 - Pilot.mkv
+Episodes were parsed and appeared in an episode list, but no show entry appeared on the main library grid — Jellyfin had nothing to group the episodes under.
+
+**Fix:** Restructured into the expected hierarchy: /mnt/media/shows/Lanterns/Season 01/Lanterns - S01E01 - Pilot.mkv
+
+After a re-scan, the show appeared correctly as its own entry.
+
+**Takeaway:** TV libraries need `Show Name/Season 0X/` folder nesting, not flat episode files.
+
+## File Transfer
+Files are transferred from a Windows PC to the container using FileZilla over SFTP (port 22), connecting as `root` and dropping files directly into `/mnt/media/movies` or `/mnt/media/shows/<Show>/Season 0X/`.
