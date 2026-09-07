@@ -10,19 +10,24 @@ bash -c "$(wget -qLO - https://github.com/community-scripts/ProxmoxVE/raw/main/c
 ```
 
 ## Network Placement Decision
-Initially planned to keep all lab services on an isolated lab network, separate from the home network. Pi-hole is the exception: since its purpose is to filter DNS for household devices, it was connected to the **home network** rather than the isolated lab segment.
+Initially planned to keep all lab services on an isolated lab network, separate from the home network. Pi-hole is the exception: since its purpose is to filter DNS for household devices, 
+it was connected to the **home network** rather than the isolated lab segment.
 
-**Trade-off noted:** this gives Pi-hole (and by extension the Proxmox host) a foot on the home network, a partial step away from full lab isolation — accepted as a reasonable exception since Pi-hole only functions if it can see real household DNS traffic.
+**Trade-off noted:** this gives Pi-hole (and by extension the Proxmox host) a foot on the home network, 
+a partial step away from full lab isolation — accepted as a reasonable exception since Pi-hole only functions if it can see real household DNS traffic.
 
 ## Unbound
-Installed Unbound alongside Pi-hole to act as a full recursive resolver rather than forwarding queries to a third-party DNS provider (e.g. Cloudflare, Google). When prompted during setup for DNS-over-TLS (DoT) forwarding mode, chose **not** to forward — opted for full recursive resolution instead, since the goal was avoiding a third-party seeing DNS query patterns entirely, not just encrypting them in transit.
+Installed Unbound alongside Pi-hole to act as a full recursive resolver rather than forwarding queries to a third-party DNS provider (e.g. Cloudflare, Google). 
+When prompted during setup for DNS-over-TLS (DoT) forwarding mode, chose **not** to forward — opted for full recursive resolution instead, since the goal was avoiding a third-party seeing DNS query patterns entirely, 
+not just encrypting them in transit.
 
-Unbound can be installed and left inactive by not switching Pi-hole's upstream DNS setting over to it — it only becomes active once selected in Pi-hole's DNS settings.
+Unbound can be installed and left inactive by not switching Pi-hole's upstream DNS setting over to it,
+it only becomes active once selected in Pi-hole's DNS settings.
 
 ## Known Blocker: Xfinity Gateway DNS Override
-The Xfinity-supplied gateway does not expose a way to override DNS network-wide through either the mobile app or the admin panel — this is a known limitation of Xfinity XB-series gateways.
+The Xfinity-supplied gateway does not give me a way to override DNS network-wide through either the mobile app or the admin panel, this is a known limitation of Xfinity XB-series gateways.
 
-**Planned resolution:** deploy a separate router (Cisco ISR 4331) behind the Xfinity gateway to get full DNS/DHCP control, rather than fighting the locked-down gateway or using per-device DNS overrides as a permanent solution.
+**Planned resolution:** Probably just going to buy a different modem/router to get passed this.
 
 ## Status
 Pi-hole and Unbound are running; network-wide DNS pointing is on hold until the dedicated router is in place.
