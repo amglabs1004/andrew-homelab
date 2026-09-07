@@ -4,7 +4,7 @@
 Access Jellyfin from outside the home network (e.g. phone on cellular data) without opening ports on the home router or exposing services directly to the internet.
 
 ## Why Tailscale
-Chose Tailscale because it requires no open inbound ports, encrypts traffic by default, and is simple to set up/revoke per device — a good fit for sharing access with a small number of personal devices/people rather than the general public.
+Chose Tailscale because it encrypts traffic by default, and is simple to set up. Felt like a good fit for sharing access with a small number of personal devices/people rather than the general public.
 
 ## Install
 ```bash
