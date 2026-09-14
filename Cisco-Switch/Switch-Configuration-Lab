@@ -1,0 +1,147 @@
+# Cisco Catalyst Switch Configuration Lab
+
+## Purpose
+
+The purpose of this lab was to practice configuring, securing, saving, troubleshooting, and wiping a Cisco Catalyst switch.
+
+---
+
+## Skills Practiced
+
+The skills I practiced during this lab included:
+
+* Initial switch configuration
+* Creating a hostname
+* Configuring passwords
+* Configuring SSH
+* Creating and configuring VLANs
+* Assigning access ports
+* Configuring trunk ports
+* Configuring port security
+* Disabling unused ports
+* Saving the switch configuration
+* Troubleshooting configuration issues
+* Wiping the switch configuration
+
+At the end of the lab, I saved the configuration using:
+
+copy running-config startup-config
+
+# Basic Switch Configuration
+
+For the initial configuration, I started by creating a hostname for the switch:
+
+hostname SW1
+
+I then configured passwords and enabled password encryption. I also created a banner that displayed the following message:
+
+> Andrew's Homelab — No Unauthorized Access
+
+I configured console access using the following commands:
+
+enable
+configure terminal
+line console 0
+password *****
+login
+exit
+
+
+I also configured the VTY lines. Initially, I configured password authentication, but later configured the VTY lines to use local authentication for SSH.
+
+enable
+configure terminal
+line vty 0 15
+password *****
+login
+exit
+
+# SSH Configuration
+
+Setting up SSH was something I did not remember very well, so this lab was a good opportunity to review the process.
+
+I configured SSH using the following commands:
+
+ip domain-name home.lab
+username admin privilege 15 secret *****
+enable secret *****
+crypto key generate rsa
+I selected a key size of:
+2048
+
+I then configured SSH version 2 and configured the VTY lines to use the local username database:
+
+ip ssh version 2
+line vty 0 15
+login local
+transport input ssh
+exit
+
+
+I verified the SSH configuration using:
+
+show ip ssh
+
+# VLAN Configuration
+
+I spent a significant amount of time working with VLANs during this lab. The commands I used most frequently were:
+show vlan brief
+show vlan
+
+
+I configured the following VLANs:
+
+| VLAN | Name       | Purpose                    |
+| ---- | ---------- | -------------------------- |
+| 10   | HOME       | Home network               |
+| 20   | GUEST      | Guest network              |
+| 30   | IoT        | Internet of Things devices |
+| 50   | LAB        | Home lab devices           |
+| 99   | MANAGEMENT | Network management         |
+| 999  | VOID       | Unused ports               |
+
+
+# Port Security Issue and Troubleshooting
+
+Because I completed this lab over a couple days, I encountered an issue when configuring port security.
+
+The `switchport port-security` command was being rejected. After troubleshooting, I discovered that the interfaces were configured as dynamic switchports instead of static access ports. I did not remember configuring them this way because I believed I had previously configured the ports as access ports.
+
+I intended for ports Gi0/1 through Gi0/48 to be access ports, with the exception of the TenGigabit interfaces used for other connections.
+
+To correct the issue, I configured the interfaces as access ports before enabling port security:
+
+text
+enable
+conf t
+interface range Gi0/1 - 48
+switchport mode access
+switchport port-security
+switchport port-security maximum 1
+switchport port-security mac-address
+
+
+This was a good troubleshooting experience because it reinforced the importance of verifying the current interface configuration instead of assuming it was configured correctly.
+
+
+
+# Unused Ports
+
+As a security best practice, I shut down unused switch ports.
+
+Because the switch is not currently connected to any devices, I chose to shut down ports 25 through 48. I also assigned the unused ports to VLAN 999, which I created as a separate unused VLAN.
+
+This helps prevent unauthorized devices from connecting to unused switch ports.
+
+
+
+# What I Learned
+
+This lab gave me additional practice configuring a Cisco switch from scratch. I reviewed basic switch configuration, SSH, VLANs, access ports, trunk ports, port security, and disabling unused ports.
+
+One of the most valuable parts of the lab was troubleshooting the port security issue. The experience reinforced the importance of checking the current switch configuration when a command does not work as expected.
+
+
+# Next Steps
+
+The next time I complete this lab, I would like to configure and test 802.1Q trunking to gain a better understanding of how VLAN tagging works between network devices.
