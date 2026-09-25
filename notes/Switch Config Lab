@@ -1,16 +1,17 @@
 Cisco Switch Configuration Lab
 
-[X ] Wipe configuration
-[X ] Configure hostname
-[X] Disable DNS lookup
-[X ] Configure enable secret
-[X ] Configure console access
+[ ] Wipe configuration
+[ ] Configure hostname
+[ ] Disable DNS lookup
+[ ] Configure enable secret
+[ ] Configure console access
 [ ] Configure SSH
 [ ] Configure management VLAN
 [ ] Configure management IP
-[X ] Create VLANs
+[ ] Create VLANs
 [ ] Configure access ports
 [ ] Configure trunk ports
+[ ] Configure 802.1q trunking
 [ ] Configure port security
 [ ] Disable unused ports
 [ ] Save configuration
