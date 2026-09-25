@@ -1,0 +1,37 @@
+       INTERNET
+                            │
+                            ▼
+                    XFINITY GATEWAY
+                      BRIDGE MODE
+                            │
+                            ▼
+                   TP-LINK AXE5400
+                       ROUTER
+                            │
+                       Ethernet
+                            │
+                            ▼
+                 ┌──────────────────┐
+                 │  CISCO ISR 4300  │
+                 │      ROUTER      │
+                 └────────┬─────────┘
+                          │
+                    Ethernet / Trunk
+                          │
+                          ▼
+                 ┌──────────────────┐
+                 │  CISCO CATALYST  │
+                 │     SWITCH       │
+                 └────────┬─────────┘
+                          │
+             ┌────────────┼────────────┐
+             │            │            │
+             ▼            ▼            ▼
+         PROXMOX       OMADA AP    PATCH PANEL
+         DELL OPTIPLEX                  │
+                                        │
+                         ┌──────────────┼──────────────┐
+                         │              │              │
+                         ▼              ▼              ▼
+                      Family ROOM       LIVING ROOM     BEDROOM
+                      Cat6 x2        Cat6 x2        Cat6 x2
