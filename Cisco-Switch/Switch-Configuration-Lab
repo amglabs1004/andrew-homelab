@@ -111,7 +111,6 @@ I intended for ports Gi0/1 through Gi0/48 to be access ports, with the exception
 
 To correct the issue, I configured the interfaces as access ports before enabling port security:
 
-text
 enable
 conf t
 interface range Gi0/1 - 48
