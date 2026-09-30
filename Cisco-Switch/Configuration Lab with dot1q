@@ -1,0 +1,224 @@
+# Cisco VLAN and 802.1Q Trunking Lab
+
+For this lab, I wanted to do basically the same configuration as my last lab, but add 802.1Q encapsulation and configure trunk ports on the switch.
+
+This lab consisted of:
+
+* [ ] Wipe configuration
+* [ ] Configure hostname
+* [ ] Disable DNS lookup
+* [ ] Configure enable secret
+* [ ] Configure console access
+* [ ] Configure SSH
+* [ ] Configure management VLAN
+* [ ] Configure management IP
+* [ ] Create VLANs
+* [ ] Configure access ports
+* [ ] Configure trunk ports
+* [ ] Configure 802.1Q trunking
+* [ ] Configure port security
+* [ ] Disable unused ports
+* [ ] Save configuration
+* [ ] Verify configuration
+* [ ] Troubleshoot problems
+* [ ] Wipe switch
+
+I'm going to skip the initial configuration part of this lab documentation. I mostly wanted this lab to focus on VLAN configuration and 802.1Q trunking.
+
+## 1. VLAN Configuration
+
+Several VLANs were created to separate different types of network traffic.
+
+| VLAN | Name       |
+| ---- | ---------- |
+| 10   | Home       |
+| 20   | Lab        |
+| 30   | Test       |
+| 99   | Management |
+| 250  | Blackhole  |
+
+The VLANs were created and named using:
+
+cisco
+vlan 10
+ name Home
+
+vlan 20
+ name Lab
+
+vlan 30
+ name Test
+
+vlan 99
+ name Management
+
+vlan 250
+ name Blackhole
+
+
+The VLAN configuration was verified with:
+
+cisco
+show vlan
+
+
+The command confirmed that VLANs 10, 20, 30, 99, and 250 were active.
+
+## 2. Access Port Configuration
+
+The switch ports were configured as access ports and assigned to the appropriate VLANs.
+
+### VLAN 10
+
+Ports Gi0/1 through Gi0/24 were assigned to VLAN 10.
+
+cisco
+interface range gi0/1 - 24
+ switchport mode access
+ switchport access vlan 10
+
+
+### VLAN 20
+
+Ports Gi0/25 through Gi0/35 were assigned to VLAN 20.
+
+cisco
+interface range gi0/25 - 35
+ switchport mode access
+ switchport access vlan 20
+
+
+### VLAN 30
+
+Ports Gi0/36 through Gi0/48 were assigned to VLAN 30.
+
+cisco
+interface range gi0/36 - 48
+ switchport mode access
+ switchport access vlan 30
+
+
+I confirmed the VLAN assignments with:
+
+cisco
+show vlan
+
+
+Most of this configuration was just for practice. I wanted to make sure every GigabitEthernet port was assigned to a VLAN.
+
+## 3. Port Security
+
+On all of the access ports, I configured sticky MAC addresses. This allows the switch to learn the MAC address of the device connected to the port.
+
+If another device is connected to that port, the switch can treat it as a security violation depending on the port-security configuration.
+
+Example:
+
+cisco
+interface gi0/25
+ switchport mode access
+ switchport access vlan 20
+ switchport port-security mac-address sticky
+
+
+### For Future Labs
+
+This lab focused on practicing sticky MAC configuration. A future lab will expand this configuration to include:
+
+* Maximum allowed MAC addresses
+* Port-security violation actions
+* Port-security troubleshooting
+* Recovering a port after a violation
+
+## 4. Unused Port Security
+
+I shut down ports that I considered unused for the sake of practice.
+
+The unused ports were also assigned to the Blackhole VLAN.
+
+## 5. Trunk Port Configuration
+
+TenGigabitEthernet1/1 and TenGigabitEthernet1/2 were configured as 802.1Q trunk ports.
+
+The ports were configured using:
+
+cisco
+interface TenGigabitEthernet1/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+
+
+The switch was configured to use 802.1Q encapsulation for trunking.
+
+At this point, I do not have any other network devices connected to the switch. Because of this, the command:
+
+cisco
+show interfaces trunk
+
+
+does not return any interfaces.
+
+This was expected because the command displays interfaces that are currently operating as trunks.
+
+I verified the configuration with:
+
+cisco
+show running-config interface te1/1
+
+
+The output showed:
+
+cisco
+interface TenGigabitEthernet1/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+
+
+Hopefully, in the near future I will connect the switch to another network device and verify an operational 802.1Q trunk.
+
+## 6. Troubleshooting and Lessons Learned
+
+One of the issues I encountered in this lab was when I tried to configure Te1/1 and Te1/2 as trunk ports. I received an error stating that a dynamic port could not be configured as a trunk port, or something similar.
+
+I had encountered this before in my last lab, but I did not remember how to fix it.
+
+This time, I configured the 802.1Q encapsulation first. I believe this is related to this older Cisco switch requiring the trunk encapsulation to be selected before configuring the port as a trunk.
+
+I also made a couple of mistakes by not initially setting which VLANs were allowed across the trunk and by not setting the native VLAN. I later added a description to the trunk port as well.
+
+The commands I used to configure these settings were:
+
+cisco
+switchport trunk native vlan 99
+switchport trunk allowed vlan 10,20,30,99
+
+
+Another mistake I made was adding the sticky MAC address command to my trunk port. I learned that port security is not configured on a trunk port in the same way it is on an access port.
+
+To remove the sticky MAC configuration, I used:
+
+cisco
+no switchport port-security mac-address sticky
+
+
+The last command I added was:
+
+cisco
+switchport nonegotiate
+
+
+I added this mostly for practice since I was manually configuring the interface as a trunk port.
+
+## Conclusion
+
+This lab gave me some good hands-on experience configuring a Cisco switch.
+
+I configured the switch with multiple VLANs, access ports, SSH access, basic port security, unused-port security, and 802.1Q trunk interfaces.
+
+The configuration was saved to the startup configuration and verified using Cisco IOS `show` commands.
+
+The next phase of the lab will be to connect the switch to another network device and verify trunk operation between the devices.
+
+
+Screen shots:
+https://cdn.jsdelivr.net/gh/free-whiteboard-online/Free-Erasorio-Alternative-for-Collaborative-Design@e9431918009ab36efffc65213d46262fd751da0d/uploads/2026-09-30T00-31-35-974Z-fmctkbub5.png
