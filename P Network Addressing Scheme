@@ -1,0 +1,19 @@
+VLAN 10 — Home -10.10.10.0/24
+Phones, tablet, PC and other trusted personal devices
+
+VLAN 20 — Gaming & Entertainment
+10.10.20.0/24
+Nintendo consoles, PS5, TV and Roku
+
+VLAN 30 — IoT / Smart Home
+10.10.30.0/24
+Blink Sync Module and future smart-home devices
+
+VLAN 40 — Servers / Infrastructure
+10.10.40.0/24
+Dell OptiPlex running Proxmox, server VMs and lab services
+
+VLAN 99 — Network Management
+10.10.99.0/24
+Switch management, router management and wireless access point management
+
