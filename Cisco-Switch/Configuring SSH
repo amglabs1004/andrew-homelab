@@ -31,9 +31,8 @@ ip address 10.10.99.X 255.255.255.0
 no shutdown
 exit
 
-********IMPORTANT**************
---configure switch default gateway as the TP-Link's LAN IP--
-192.168.0.1
+--configure switch default gateway as cisco ISR 4300--
+X.X.X.X 255.255.255.0
 
 --Save and verify--
 copy running-config startup-config
