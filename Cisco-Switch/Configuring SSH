@@ -1,0 +1,45 @@
+enable
+configure terminal
+
+hostname SW1
+ip domain-name andrewlab.local
+
+--Create a local admin account--
+username admin privilege 15 secret PASSWORDHERE
+enable secret PASSWORDHERE
+
+--Generate RSA keys--
+crypto key generate rsa
+
+--configure SSH version 2--
+ip ssh version 2
+
+--Configure the VTY lines for SSH only--
+line vty 0 15
+login local
+transport input ssh
+exit
+
+--Configure the management VLAN--
+vlan 99
+name Management
+exit
+
+--Assign a management IP address--
+interface vlan 99
+ip address 10.10.99.X 255.255.255.0
+no shutdown
+exit
+
+********IMPORTANT**************
+--configure switch default gateway as the TP-Link's LAN IP--
+192.168.0.1
+
+--Save and verify--
+copy running-config startup-config
+show ip ssh
+show ip interface brief
+show running-config | section line vty
+
+--From a PC on the same reachable network test:--
+ssh admin@10.10.99.2
