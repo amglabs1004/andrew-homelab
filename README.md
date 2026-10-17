@@ -49,14 +49,14 @@ My goal for this project is to build hands-on experience with enterprise network
 **In progresss**
 
 ### Project Status ###
-Area	Status
-Proxmox VE host (Dell OptiPlex)	Up and running
-Cisco ISR 4331 router	Installed and uplinked to the home router
-Router ↔ Catalyst 3560X switch link	Working (ISR G0/0/1 → switch G0/47)
-SSH management access	In progress
-Omada wireless (TP-Link EAP610)	AP purchased; Omada controller planned as a VM
-Services (Pi-hole, DNS, DHCP, Jellyfin, cloud storage)	Planned
-VLANs / inter-VLAN routing	Planned
+Area	                                                      Status
+Proxmox VE host (Dell OptiPlex)	                        Up and running
+Cisco ISR 4331 router	                                  Installed and uplinked to the home router
+Router ↔ Catalyst 3560X switch link	                    Working (ISR G0/0/1 → switch G0/47)
+SSH management access	                                  Up and running
+Omada wireless (TP-Link EAP610)	                        AP purchased; Omada controller planned as a VM
+Services (Pi-hole, DNS, DHCP, Jellyfin, cloud storage)	        In progress
+VLANs / inter-VLAN routing	                                    Planned
 
 
 ### Lessons Learned ###
