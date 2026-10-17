@@ -55,7 +55,13 @@ My goal for this project is to build hands-on experience with enterprise network
 This is a living project. Documentation will be updated as infrastructure is added, redesigned, and tested.
 
 ### Lessons Learned ###
-
 This section will document problems encountered during my project, how they were diagnosed, and how they were resolved.
-
 The goal is not only to document successful configurations, but also to document troubleshooting and mistakes along the way.
+
+1. Router-to-switch link not working (wrong interface + management port)
+Problem: The link between the ISR 4331 and the Catalyst switch wasn't passing traffic.
+Cause: Two mistakes stacked on top of each other:
+I configured interface G0/0/2 on the router, but the port actually cabled to the switch was G0/0/1.
+The Ethernet cable was plugged into the router's management port (Gi0), which is an out-of-band port in its own management VRF, it isn't meant to route regular data traffic.
+Fix: Moved the configuration to G0/0/1, plugged the cable into G0/47, instead of the management port.
+Takeaway: Confirm the physical port before configuring the logical one. Next time I'll check the port labels and link lights, and use `show ip interface brief` to verify which interface is actually up and what's on the other end before troubleshooting the config.
