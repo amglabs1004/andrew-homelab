@@ -51,7 +51,7 @@ My goal for this project is to build hands-on experience with enterprise network
 * [Build Log](Build%20Log/) - dated progress entries
 * Router configs: [ISR4300](ISR4300/)
 * Switch configs: [Cisco-Switch](Cisco-Switch/)
-* Service setup notes: [Jellyfin](notes/jellyfin-setup), [Pi-hole](notes/pihole-setup), [Tailscale remote access](notes/tailscale-remote-acess)
+* Service setup notes: [Jellyfin](notes/jellyfin-setup.md), [Pi-hole](notes/pihole-setup.md), [Tailscale remote access](notes/tailscale-remote-acess.md)
 
 ### Project Status ###
 Area	                                                     

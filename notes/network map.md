@@ -1,3 +1,4 @@
+```
                         INTERNET
                             │
                             ▼
@@ -35,3 +36,4 @@
                          ▼              ▼              ▼
                       Family ROOM       LIVING ROOM     BEDROOM
                       Cat6 x2        Cat6 x2        Cat6 x2
+```

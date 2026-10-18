@@ -1,3 +1,4 @@
+```
 enable
 configure terminal
 
@@ -42,3 +43,4 @@ show running-config | section line vty
 
 --From a PC on the same reachable network test:--
 ssh admin@10.10.99.2
+```
