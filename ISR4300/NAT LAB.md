@@ -20,7 +20,7 @@ ip access-list extended NAT-LAB
 
 In a NAT ACL, “permit” doesn’t mean “allow through.” It means “translate this.”
 
-* 0.0.255.255 is a wildcard mask, the inverse of a subnet mask. 0 means “must match” and 255 means “anything.” So 10.10.0.0 0.0.255.255 means any 10.10.x.x address, which covers all your VLANs.
+* 0.0.255.255 is a wildcard mask, the inverse of a subnet mask. 0 means “must match” and 255 means “anything.” So 10.10.0.0 0.0.255.255 means any 10.10.x.x address, which covers all of my VLANs.
 * deny: traffic from the lab to your home network is not translated. When your PC opens Proxmox, the reply has to come back from 10.10.40.10, the address your PC connected to. If it came back as 192.168.0.191, your PC would discard it as unrelated traffic.
 * permit: everything else from the lab (the internet) is translated.
 * ACLs are read top-down and stop at the first match, so the deny has to come first.
