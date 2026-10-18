@@ -12,7 +12,7 @@ Blink Sync Module and future smart-home devices
 VLAN 40 — Servers / Infrastructure
 10.10.40.0/24
 Dell OptiPlex running Proxmox, server VMs and lab services
-10.10.40.1-Proxmox VE
+10.10.40.10-Proxmox VE
 
 VLAN 99 — Network Management
 10.10.99.0/24
