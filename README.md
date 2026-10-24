@@ -53,6 +53,12 @@ My goal for this project is to build hands-on experience with enterprise network
 * Switch configs: [Cisco-Switch](Cisco-Switch/)
 * Service setup notes: [Jellyfin](notes/jellyfin-setup.md), [Pi-hole](notes/pihole-setup.md), [Tailscale remote access](notes/tailscale-remote-acess.md)
 
+## Toolbox ##
+
+Quick-reference material I use when something breaks.
+
+* [Troubleshooting Cheat Sheet](Toolbox/troubleshooting-cheat-sheet.md) - Cisco IOS, Proxmox/LXC, Pi-hole/Unbound, and Windows commands, with what each does and when to use it, plus a bottom-up troubleshooting order
+
 ### Project Status ###
 Area	                                                     
 
