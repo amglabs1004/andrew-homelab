@@ -23,7 +23,7 @@ When something breaks, start at the bottom of the stack and work up: cable and p
 | Home router static route | 10.10.0.0/16 via 192.168.0.191 | How the home network reaches the lab |
 | Jellyfin (LXC) | 10.10.40.20 | VLAN 40 Servers |
 | Pi-hole (LXC) | 10.10.40.30 | VLAN 40 Servers; Unbound on 127.0.0.1 port 5335 |
-| Proxmox host | VLAN 40 | OptiPlex, behind the 3560X |
+| Proxmox host | VLAN 40 | 10.10.40.10 | OptiPlex, behind the 3560X |
 
 | VLAN | Name | Subnet |
 | --- | --- | --- |
