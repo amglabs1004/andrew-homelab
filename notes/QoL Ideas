@@ -1,0 +1,7 @@
+problem: Remote play gets choppy when multiple household devices are using Wi-Fi.
+
+Short-term fix: Enable QoS / device priority on the home TP-Link router
+
+Lab goal:Deploy OPNsense and use its traffic shaper (FQ-CoDel) to prioritize VLAN 20 (Gaming/Entertainment, 10.10.20.0/24) over general traffic.
+
+Success criteria:Document before/after latency and jitter measurements. Stable remote play stream while other devices are streaming or downloading
