@@ -218,10 +218,3 @@ I configured the switch with multiple VLANs, access ports, SSH access, basic por
 The configuration was saved to the startup configuration and verified using Cisco IOS `show` commands.
 
 The next phase of the lab will be to connect the switch to another network device and verify trunk operation between the devices.
-
-
-Screen shots:
-https://postimg.cc/PLw4tFj0
-https://postimg.cc/rzWvhQRf
-https://postimg.cc/yJtbjZVR
-https://postimg.cc/kBqhT9mq
