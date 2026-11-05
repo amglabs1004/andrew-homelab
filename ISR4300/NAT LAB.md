@@ -4,7 +4,7 @@ This config set up NAT (Network Address Translation) on the ISR so the lab can r
 
 ## The problem it solves
 
-Your lab devices use 10.10.x.x addresses. When Jellyfin sent a request to TMDB, the packet reached the internet fine. The reply came back to your TP-Link addressed to 10.10.40.20, though, and the TP-Link only NATs its own 192.168.0.x devices. It didn’t know how to handle that reply, so it got dropped.
+My lab devices use 10.10.x.x addresses. When Jellyfin sent a request to TMDB, the packet reached the internet fine. The reply came back to your TP-Link addressed to 10.10.40.20, though, and the TP-Link only NATs its own 192.168.0.x devices. It didn’t know how to handle that reply, so it got dropped.
 
 NAT fixes this by having the ISR swap the lab address for its own home-network address (192.168.0.191) on the way out. To the TP-Link, all lab traffic looks like it comes from one ordinary device on your home network.
 
