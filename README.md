@@ -60,7 +60,7 @@ Quick-reference material I use when something breaks.
 * [Troubleshooting Cheat Sheet](Toolbox/troubleshooting-cheat-sheet.md) - Cisco IOS, Proxmox/LXC, Pi-hole/Unbound, and Windows commands, with what each does and when to use it, plus a bottom-up troubleshooting order
 
 ### Project Status ###
-Area	                                                     
+LOOKING TO ADD : Catalyst 2960-CX-8PC-L                                                    
 
 Proxmox VE host (Dell OptiPlex)	                     
 
